@@ -1,0 +1,35 @@
+site_url: https://ntn-boilerplate.netlify.app/
+logo_url: https://ntn-boilerplate.netlify.app/icon.png
+
+#publish_mode: editorial_workflow
+backend:
+  name: git-gateway
+  branch: master
+  squash_merges: true
+
+# used together with `npx netlify-cms-proxy-server`. https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository
+local_backend: true
+
+media_folder: assets/imgs
+public_folder: static
+
+# Docs: https://www.netlifycms.org/docs/configuration-options/#collections
+collections:
+  - name: 'person'
+    label: 'Person'
+    folder: 'content/person'
+    create: true
+    format: 'json'
+    slug: '{{fields.slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Full name English', name: 'fullname_en', widget: 'string', required: true }
+      - { label: 'Full name Arabic', name: 'fullname_ar', widget: 'string', required: true }
+      - { label: 'Age', name: 'age', widget: 'number', required: true, value_type: 'int', min: 0, max: 110, step: 1 }
+      - { label: 'Gender', name: 'gender', widget: 'select', options: ['Male', 'Female'], required: true }
+      - { label: 'Date of Death', name: 'dod', widget: 'datetime', required: true }
+      - { label: 'Picture', name: 'picture', widget: 'image', choose_url: true, default: /img/missing.png }
+      - { label: 'Description English', name: 'description_en', widget: 'markdown', required: false }
+      - { label: 'Description Arabic', name: 'description_ar', widget: 'markdown', required: false }
+#     - { label: "slug", name: "slug", widget: "hidden", default: "TO_BE_OVERRIDDEN"}
